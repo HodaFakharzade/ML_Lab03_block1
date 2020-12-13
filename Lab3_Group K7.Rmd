@@ -13,7 +13,7 @@ Statement of contribution: Assignment 1 was contributed mostly by Ravinder, assi
 
 
 
-# 1. Assignment 1 
+# 1. Assignment 1 -
 ```{r,include=FALSE}
 ################################
 #Assignment 1
@@ -63,11 +63,14 @@ nn <- neuralnet(Sin ~Var,data = tr,hidden=hidUnit,
 #plot(nn)
 
 ```
-The network structure is :
 
-![network architeture](NN_structure2.jpeg)
 
 2 hidden layer has been used. 6 hidden unit in the first latent layer and 4 hidden unit in the second latent unit. The Error of the model is very small , $9.8\mathrm{e}{-5}$.
+
+![network architeture](NN_structure2.jpeg){width=80%}
+
+
+\newpage
 
 ```{r}
 # Plot of the training data (black), test data (blue), and predictions (red)
