@@ -141,6 +141,7 @@ legend("bottomleft", legend=c("train","truth value of test","predicted on test")
 ```
 
 As seen in the graph, our model performs well, and predicts the test data with only a slight error. 
+
 ### *b) Then, sample 500 points uniformly at random in the interval $\left[ {0,20} \right]$, and apply the sine function to each point. Use the previously learned NN to predict the sine function value for these new 500 points. You should get mixed results. Plot and comment your results.*
 
 
