@@ -273,7 +273,7 @@ plot_station_dist <- plot(kernel_stations_dist(st,a,b,h_distance)[[1]],
                           xlab = 'distance', ylab = 'kernel distance')
 
 
-plot_day_dist <- plot(kernel_day_dist(st, date, h_date)[[2]],
+plot_day_dist <- plot(kernel_day_dist(st, date, h_date)[[1]],
                       kernel_day_dist(st, date, h_date)[[2]],
                       xlab = 'distance', ylab = 'kernel distance')
 
