@@ -141,7 +141,7 @@ legend("bottomleft", legend=c("train","truth value of test","predicted on test")
 ```
 
 As seen in the graph, our model performs well, and predicts the test data with only a slight error. 
-### b) *Then, sample 500 points uniformly at random in the interval $\left[ {0,20} \right]$, and apply the sine function to each point. Use the previously learned NN to predict the sine function value for these new 500 points. You should get mixed results. Plot and comment your results.*
+### *b) Then, sample 500 points uniformly at random in the interval $\left[ {0,20} \right]$, and apply the sine function to each point. Use the previously learned NN to predict the sine function value for these new 500 points. You should get mixed results. Plot and comment your results.*
 
 
 ```{r}
@@ -159,7 +159,7 @@ legend("bottomleft", legend=c("true","predicted"), pch=c(16,16),col =
 
 From the graph, we can see that the our neural network has only been successful in predicting values of $x$ between $\left[ {0,10} \right]$ and  clearly has not learned the general shape of $\sin x$ for $x$ between $\left[ {10,20} \right]$. This shows the network will not generalize to examples outside of the training set. Early stopping technique , could help the network avoid overfitting on the training data, which will result in a better generalization.
 
-### c) *Finally, sample 500 points uniformly at random in the interval $\left[ {0,10} \right]$, and apply the sine function to each point. Use all these points as training points for learning a NN that tries to predict $x$ from $\sin x$, i.e. unlike before when the goals was to predict $\sin x$ from x. You should get bad results. Plot and comment your results*
+### *c) Finally, sample 500 points uniformly at random in the interval $\left[ {0,10} \right]$, and apply the sine function to each point. Use all these points as training points for learning a NN that tries to predict $x$ from $\sin x$, i.e. unlike before when the goals was to predict $\sin x$ from x. You should get bad results. Plot and comment your results*
 
 The network architecture :
 ```{r}
