@@ -22,12 +22,67 @@ Statement of contribution: Assignment 1 was contributed mostly by Ravinder, assi
 ## 1.1
 
 
-# 2. Assignment 2 - 
+# 2. Assignment 2 - Support Vector Machines
 ```{r,include=FALSE}
 ################################
 #Assignment 2
 ################################
 ```
+This assignments consists of running the code from the provided file **Lab3Block1_2020_SVMs.R** and answering questions about the models. The code from the file is displayed below:
+```{r, eval=FALSE}
+# Lab 3 block 1 of 732A99/TDDE01 Machine Learning
+# Author: jose.m.pena@liu.se
+# Made for teaching purposes
+
+library(kernlab)
+set.seed(1234567890)
+
+data(spam)
+
+index <- sample(1:4601)
+tr <- spam[index[1:3000], ]
+va <- spam[index[3001:3800], ]
+trva <- spam[index[1:3800], ]
+te <- spam[index[3801:4601], ]
+
+by <- 0.3
+err_va <- NULL
+for(i in seq(by,5,by)){
+  filter <- ksvm(type~.,data=tr,kernel="rbfdot",kpar=list(sigma=0.05),C=i)
+  mailtype <- predict(filter,va[,-58])
+  t <- table(mailtype,va[,58])
+  err_va <-c(err_va,(t[1,2]+t[2,1])/sum(t))
+}
+
+filter0 <- ksvm(type~.,data=tr,kernel="rbfdot",kpar=list(sigma=0.05),C=which.min(err_va)*by)
+mailtype <- predict(filter0,va[,-58])
+t <- table(mailtype,va[,58])
+err0 <- (t[1,2]+t[2,1])/sum(t)
+err0
+
+filter1 <- ksvm(type~.,data=tr,kernel="rbfdot",kpar=list(sigma=0.05),C=which.min(err_va)*by)
+mailtype <- predict(filter1,te[,-58])
+t <- table(mailtype,te[,58])
+err1 <- (t[1,2]+t[2,1])/sum(t)
+err1
+
+filter2 <- ksvm(type~.,data=trva,kernel="rbfdot",kpar=list(sigma=0.05),C=which.min(err_va)*by)
+mailtype <- predict(filter2,te[,-58])
+t <- table(mailtype,te[,58])
+err2 <- (t[1,2]+t[2,1])/sum(t)
+err2
+
+filter3 <- ksvm(type~.,data=spam,kernel="rbfdot",kpar=list(sigma=0.05),C=which.min(err_va)*by)
+mailtype <- predict(filter3,te[,-58])
+t <- table(mailtype,te[,58])
+err3 <- (t[1,2]+t[2,1])/sum(t)
+err3
+```
+## Questison 1: Which filter do we return to the user? filter0, filter1, filter2 or filter3? Why?
+We want our final model, the one we return to the user, to be as good as possible. As such we want it to have access to as much data as possible so that it can use more information while training. Therefore the filter we return to the user should be filter3, as the parameter "data=spam" shows that it was trained on the entire data set.
+
+## Questison 2: What is the estimate of the generalization error of the filter returned? err0, err1, err2 or err3? Why?
+While one might think that since we're returning filter3 we should also return the error calculated on filter3, this would be incorrect. The idea behind the error is that it should show what sort of error we can expect when the model is used to predict new data, i.e. data that was not used to train the model, as this is going to be the situation when the model is implemented by the user. As filter3 was trained with all of our data, the test data was also included for training. Therefore an error calculated based on the test data will not be accurate but will instead likely underestimate the error of our model. The error that should be reported is err1. This is because filter1 was trained only on the training data and then tested on the test data. This error will likely be higher than err3, but will be a better reflection of how our filter will actually perform.
 
 # 3. Assignment 3 - NEURAL NETWORKS
 ```{r, include=FALSE}
